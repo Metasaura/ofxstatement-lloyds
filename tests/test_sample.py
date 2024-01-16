@@ -17,5 +17,5 @@ def test_sample() -> None:
 
 def test_iop():
     h=2-5
-    h=h+9*8
-    assert h==69
+    h=h+5*19+8
+    assert h==100
