@@ -6,14 +6,13 @@ from ofxstatement.statement import Statement, StatementLine
 
 from ofxstatement.parser import CsvStatementParser
 
-__import__("pkg_resources").declare_namespace(__name__)
-
 
 class LloydsPlugin(Plugin):
     """Lloyds plugin (for developers only)"""
 
     def get_parser(self, filename: str) -> "LloydsParser":
-        return LloydsParser(filename)
+        f = open(filename, "r")
+        return LloydsParser(f)
 
 
 
