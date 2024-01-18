@@ -31,7 +31,6 @@ setup(
     ],
     packages=find_packages("src"),
     package_dir={"": "src"},
-    namespace_packages=["ofxstatement", "ofxstatement.plugins"],
     entry_points={
         "ofxstatement": ["lloyds = ofxstatement_lloyds.plugin:LloydsPlugin"]
     },
