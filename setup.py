@@ -33,7 +33,7 @@ setup(
     package_dir={"": "src"},
     namespace_packages=["ofxstatement", "ofxstatement.plugins"],
     entry_points={
-        "ofxstatement": ["sample = ofxstatement.plugins.sample:SamplePlugin"]
+        "ofxstatement": ["lloyds = ofxstatement_lloyds.plugin:LloydsPlugin"]
     },
     install_requires=["ofxstatement"],
     include_package_data=True,

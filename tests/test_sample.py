@@ -2,11 +2,11 @@ import os
 
 from ofxstatement.ui import UI
 
-from ofxstatement.plugins.sample import SamplePlugin
+from ofxstatement_lloyds.plugin import LloydsPlugin
 
 
 def test_sample() -> None:
-    plugin = SamplePlugin(UI(), {})
+    plugin = LloydsPlugin(UI(), {})
     here = os.path.dirname(__file__)
     sample_filename = os.path.join(here, "sample-statement.csv")
 
@@ -14,8 +14,14 @@ def test_sample() -> None:
     statement = parser.parse()
 
     assert statement is not None
+    assert len(statement.lines) == 6
+
+def sum2num(x, y):
+    return x+y
 
 def test_iop():
     h=2-5
     h=h+5*19+8
     assert h==100
+
+    assert sum2num(5, 9) == 14
