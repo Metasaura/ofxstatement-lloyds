@@ -27,6 +27,19 @@ class LloydsParser(CsvStatementParser):
     def parse_record(self, line: list[str]) -> Optional[StatementLine]:
         sline = super().parse_record(line)
         sline.id = generate_unique_transaction_id(sline, self.uids)
+        debit = line[5]
+        credit = line[6]
+        if debit == '':
+            debit = 0
+        else:
+            debit = self.parse_decimal(debit)
+        if credit == '':
+            credit = 0
+        else:
+            credit = self.parse_decimal(credit)
+        sline.amount = (-debit + credit)
+        
+
         return sline
 
     def split_records(self) -> Iterable[list[str]]:
