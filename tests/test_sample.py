@@ -1,3 +1,4 @@
+from decimal import Decimal
 import os
 
 from ofxstatement.ui import UI
@@ -16,6 +17,9 @@ def test_sample() -> None:
 
     assert statement is not None
     assert len(statement.lines) == 6
+
+    assert statement.lines[0].amount == Decimal('-8.99')
+    assert statement.lines[3].amount == Decimal('2000')
 
 def sum2num(x, y):
     return x+y
