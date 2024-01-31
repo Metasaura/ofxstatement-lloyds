@@ -24,6 +24,10 @@ def test_sample() -> None:
     assert statement.lines[5].date == datetime.datetime(2023, 12, 1)
     assert statement.lines[2].memo == 'ADAGIO EUROS       202.40 VISAXR     1.16168 CD 1417 '
 
+    assert statement.start_balance == Decimal("6039.58")
+    assert statement.end_balance == Decimal("2040.59")
+    assert statement.start_date == datetime.datetime(2023, 12, 1)
+    assert statement.end_date == datetime.datetime(2024, 1, 15)
 
 def sum2num(x, y):
     return x+y
