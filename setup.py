@@ -4,7 +4,7 @@
 from setuptools import find_packages
 from distutils.core import setup
 
-version = "0.9.0"
+version = "0.9.1"
 
 with open("README.rst") as f:
     long_description = f.read()
