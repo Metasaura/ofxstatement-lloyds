@@ -29,6 +29,9 @@ def test_sample() -> None:
     assert statement.start_date == datetime.datetime(2023, 12, 1)
     assert statement.end_date == datetime.datetime(2024, 1, 15)
 
+    assert statement.currency ==  'EUR'
+    assert statement.account_id == '38530568'
+
 def sum2num(x, y):
     return x+y
 
