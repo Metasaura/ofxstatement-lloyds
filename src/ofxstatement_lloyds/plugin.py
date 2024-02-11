@@ -57,7 +57,6 @@ class LloydsParser(CsvStatementParser):
         credit = line[6]
         balance = line[7]
         self.account_id = account_id
-        self.start_balance = balance
         self.start_date = sline.date
         if debit == '':
             debit = 0
@@ -74,7 +73,9 @@ class LloydsParser(CsvStatementParser):
         
         if self.end_date == None:
             self.end_date = sline.date
-
+        
+        balance = self.parse_decimal(balance)
+        self.start_balance = balance + debit - credit
 
         return sline
 
