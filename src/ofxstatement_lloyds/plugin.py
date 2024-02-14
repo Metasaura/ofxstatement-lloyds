@@ -74,6 +74,15 @@ class LloydsParser(CsvStatementParser):
         if self.end_date == None:
             self.end_date = sline.date
         
+        if debit:
+            sline.trntype = "DEBIT"
+        
+        if credit:
+            sline.trntype = "CREDIT"
+
+        if line [1]== "DD":
+            sline.trntype = "DIRECTDEBIT"
+        
         balance = self.parse_decimal(balance)
         self.start_balance = balance + debit - credit
 
