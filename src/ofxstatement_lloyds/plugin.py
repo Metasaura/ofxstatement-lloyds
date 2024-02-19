@@ -79,10 +79,22 @@ class LloydsParser(CsvStatementParser):
         
         if credit:
             sline.trntype = "CREDIT"
-
-        if line [1]== "DD":
-            sline.trntype = "DIRECTDEBIT"
         
+        typemap = dict(
+            DD = 'DIRECTDEBIT', 
+            FPI='CREDIT', 
+            BGC='CREDIT', 
+            FPO = 'DEBIT', 
+            PAY = 'PAYMENT', 
+            DEB = 'DEBIT', 
+            SO = 'REPEATPMT', 
+            COR = 'OTHER', 
+            TFR = 'XFER'
+        )
+        trtype = line [1]
+        if trtype in typemap:
+            sline.trntype = typemap[trtype]
+    
         balance = self.parse_decimal(balance)
         self.start_balance = balance + debit - credit
 
