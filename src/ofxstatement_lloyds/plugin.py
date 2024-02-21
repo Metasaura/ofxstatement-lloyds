@@ -4,7 +4,11 @@ from typing import Iterable, Iterator, Optional, TextIO, cast
 
 from ofxstatement.plugin import Plugin
 from ofxstatement.parser import StatementParser
-from ofxstatement.statement import Statement, StatementLine, generate_unique_transaction_id
+from ofxstatement.statement import (
+    Statement,
+    StatementLine,
+    generate_unique_transaction_id,
+)
 
 from ofxstatement.parser import CsvStatementParser
 
@@ -14,8 +18,8 @@ class LloydsPlugin(Plugin):
 
     def get_parser(self, filename: str) -> "LloydsParser":
         f = open(filename, "r")
-        abc = LloydsParser(f) # create an instanse of lloyds parser
-        if 'currency' not in self.settings:
+        abc = LloydsParser(f)  # create an instanse of lloyds parser
+        if "currency" not in self.settings:
             self.ui.warning("Currency is not set")
             self.ui.status("")
             self.ui.status("Edit your configuration and set the currency:")
@@ -25,7 +29,6 @@ class LloydsPlugin(Plugin):
             self.ui.status("currency = GBP")
         abc.statement.currency = self.settings.get("currency")
         return abc
-
 
 
 class LloydsParser(CsvStatementParser):
@@ -63,45 +66,45 @@ class LloydsParser(CsvStatementParser):
         self.account_id = account_id
         self.start_date = sline.date
 
-        if debit_str == '':
+        if debit_str == "":
             debit = Decimal("0")
         else:
             debit = self.parse_decimal(debit_str)
 
-        if credit_str == '':
+        if credit_str == "":
             credit = Decimal("0")
         else:
             credit = self.parse_decimal(credit_str)
 
-        sline.amount = (-debit + credit)
-        
+        sline.amount = -debit + credit
+
         if self.end_balance == None:
             self.end_balance = balance_str
-        
+
         if self.end_date == None:
             self.end_date = sline.date
-        
+
         if debit:
             sline.trntype = "DEBIT"
-        
+
         if credit:
             sline.trntype = "CREDIT"
-        
+
         typemap = dict(
-            DD = 'DIRECTDEBIT', 
-            FPI='CREDIT', 
-            BGC='CREDIT', 
-            FPO = 'DEBIT', 
-            PAY = 'PAYMENT', 
-            DEB = 'DEBIT', 
-            SO = 'REPEATPMT', 
-            COR = 'OTHER', 
-            TFR = 'XFER'
+            DD="DIRECTDEBIT",
+            FPI="CREDIT",
+            BGC="CREDIT",
+            FPO="DEBIT",
+            PAY="PAYMENT",
+            DEB="DEBIT",
+            SO="REPEATPMT",
+            COR="OTHER",
+            TFR="XFER",
         )
-        trtype = line [1]
+        trtype = line[1]
         if trtype in typemap:
             sline.trntype = typemap[trtype]
-    
+
         balance = self.parse_decimal(balance_str)
         self.start_balance = balance + debit - credit
 
