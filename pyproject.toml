@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ofxstatement-lloyds"
+version = "0.9.5.dev0"
+authors = [
+  { name="Victoria Lebedeva", email="victoria@lebedev.lt" },
+]
+description = "Plugin for reading statements of Lloyds UK bank"
+readme = "README.rst"
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "Natural Language :: English",
+    "Topic :: Office/Business :: Financial :: Accounting",
+    "Topic :: Utilities",
+    "Environment :: Console",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
+]
+keywords = ["ofx", "banking", "statement", "lloyds"]
+dependencies = [
+  "ofxstatement",
+]
+
+[project.urls]
+Homepage = "https://github.com/Metasaura/ofxstatement-lloyds"
+
+[project.entry-points."ofxstatement"]
+lloyds = "ofxstatement_lloyds.plugin:LloydsPlugin"
