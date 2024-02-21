@@ -34,8 +34,8 @@ class LloydsPlugin(Plugin):
 class LloydsParser(CsvStatementParser):
     mappings = {"date": 0, "memo": 4}
     date_format = "%d/%m/%Y"
-    start_balance: Decimal | None = None
-    end_balance: str | None = None
+    start_balance: Optional[Decimal] = None
+    end_balance: Optional[str] = None
     start_date = None
     end_date = None
 
