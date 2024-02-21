@@ -11,7 +11,7 @@ exceptiongroup = {markers="python_version < '3.11'"}
 
 [packages]
 ofxstatement = "*"
-ofxstatement-sample = {editable = true,path = "."}
+ofxstatement-lloyds = {editable = true,path = "."}
 
 [pipenv]
 allow_prereleases = true
