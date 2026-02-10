@@ -49,7 +49,9 @@ def test_sample() -> None:
     assert statement.lines[3].amount == Decimal("2000")
     assert statement.lines[3].trntype == "CREDIT"
     assert statement.lines[3].payee == "HHHHH LTD"
-    assert statement.lines[3].memo == "FPI RP555000111222333 207348     10 01DEC23 16:05"
+    assert (
+        statement.lines[3].memo == "FPI RP555000111222333 207348     10 01DEC23 16:05"
+    )
 
     # [4] Direct debit: INS2 01000011/010011110010
     assert statement.lines[4].amount == Decimal("-5.97")
@@ -101,6 +103,5 @@ def test_sample() -> None:
     assert statement.lines[11].trntype == "CREDIT"
     assert statement.lines[11].payee == "CLIENT CO LTD"
     assert (
-        statement.lines[11].memo
-        == "BGC 400000005566778899 306364     10 01DEC23 09:15"
+        statement.lines[11].memo == "BGC 400000005566778899 306364     10 01DEC23 09:15"
     )

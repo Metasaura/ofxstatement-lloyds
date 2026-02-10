@@ -14,22 +14,22 @@ from ofxstatement.statement import (
 
 # Lloyds transaction type to OFX TRNTYPE mapping
 TRNTYPE_MAP = {
-    "BGC": "CREDIT",       # Bank Giro Credit
-    "BP":  "DEBIT",        # Bill Payment
-    "CD":  "DEBIT",        # Card Payment
-    "CHQ": "CHECK",        # Cheque
-    "COR": "OTHER",        # Correction
-    "CPT": "ATM",          # Cashpoint/ATM
-    "CR":  "CREDIT",       # Credit
-    "DD":  "DIRECTDEBIT",  # Direct Debit
-    "DEB": "DEBIT",        # Debit
-    "DEP": "DEP",          # Deposit
-    "FEE": "SRVCHG",       # Fee
-    "FPI": "CREDIT",       # Faster Payment In
-    "FPO": "DEBIT",        # Faster Payment Out
-    "PAY": "PAYMENT",      # Payment
-    "SO":  "REPEATPMT",    # Standing Order
-    "TFR": "XFER",         # Transfer
+    "BGC": "CREDIT",  # Bank Giro Credit
+    "BP": "DEBIT",  # Bill Payment
+    "CD": "DEBIT",  # Card Payment
+    "CHQ": "CHECK",  # Cheque
+    "COR": "OTHER",  # Correction
+    "CPT": "ATM",  # Cashpoint/ATM
+    "CR": "CREDIT",  # Credit
+    "DD": "DIRECTDEBIT",  # Direct Debit
+    "DEB": "DEBIT",  # Debit
+    "DEP": "DEP",  # Deposit
+    "FEE": "SRVCHG",  # Fee
+    "FPI": "CREDIT",  # Faster Payment In
+    "FPO": "DEBIT",  # Faster Payment Out
+    "PAY": "PAYMENT",  # Payment
+    "SO": "REPEATPMT",  # Standing Order
+    "TFR": "XFER",  # Transfer
 }
 
 # Patterns for extracting payee from Lloyds description text.
@@ -50,26 +50,19 @@ FX_PURCHASE_RE = re.compile(
 )
 
 # Card payment: "MERCHANT CD nnnn [ddMMMYY]"
-CARD_PAYMENT_RE = re.compile(
-    r"^(.+?)\s+(CD\s+\d{4}(?:\s+\d{2}[A-Z]{3}\d{2})?)\s*$"
-)
+CARD_PAYMENT_RE = re.compile(r"^(.+?)\s+(CD\s+\d{4}(?:\s+\d{2}[A-Z]{3}\d{2})?)\s*$")
 
 # Faster payment (in/out): name then long numeric ref then ddMMMYY HH:MM
 # Reference may have RP/FP prefix
 FASTER_PAYMENT_RE = re.compile(
-    r"^(.+?)\s+((?:RP|FP)?\d{9,}[\d\s/A-Z-]*\d{2}[A-Z]{3}\d{2}"
-    r"\s+\d{2}:\d{2})\s*$"
+    r"^(.+?)\s+((?:RP|FP)?\d{9,}[\d\s/A-Z-]*\d{2}[A-Z]{3}\d{2}" r"\s+\d{2}:\d{2})\s*$"
 )
 
 # Service charge: "SERVICE CHARGES REF : number"
-SERVICE_CHARGE_RE = re.compile(
-    r"^(.+?)\s+(REF\s*:\s*\d+)\s*$"
-)
+SERVICE_CHARGE_RE = re.compile(r"^(.+?)\s+(REF\s*:\s*\d+)\s*$")
 
 # Direct debit / standing order: name then alphanumeric reference
-DD_REF_RE = re.compile(
-    r"^(.+?)\s+([\dA-Z][\dA-Z/-]{7,})\s*$"
-)
+DD_REF_RE = re.compile(r"^(.+?)\s+([\dA-Z][\dA-Z/-]{7,})\s*$")
 
 
 def extract_payee(description: str, trtype: str) -> tuple[str, str]:
