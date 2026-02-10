@@ -1,3 +1,4 @@
+import datetime
 import re
 from decimal import Decimal
 from typing import Iterable, Iterator, Optional, TextIO, cast
@@ -175,8 +176,8 @@ class LloydsParser(CsvStatementParser):
         self.account_id: Optional[str] = None
         self.start_balance: Optional[Decimal] = None
         self.end_balance: Optional[Decimal] = None
-        self.start_date = None
-        self.end_date = None
+        self.start_date: Optional[datetime.datetime] = None
+        self.end_date: Optional[datetime.datetime] = None
 
     def parse(self) -> Statement:
         stmt = super().parse()
