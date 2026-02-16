@@ -56,6 +56,9 @@ transaction type code as memo.
 Installation
 ------------
 
+Linux / macOS
+~~~~~~~~~~~~~
+
 .. code-block:: bash
 
     pip install ofxstatement-lloyds
@@ -65,6 +68,28 @@ Or with pipx:
 .. code-block:: bash
 
     pipx inject ofxstatement ofxstatement-lloyds
+
+Windows
+~~~~~~~
+
+.. code-block:: powershell
+
+    py -m pip install ofxstatement-lloyds
+
+Upgrading
+~~~~~~~~~
+
+Linux / macOS:
+
+.. code-block:: bash
+
+    pip install --upgrade ofxstatement-lloyds
+
+Windows:
+
+.. code-block:: powershell
+
+    py -m pip install --upgrade ofxstatement-lloyds
 
 Configuration
 -------------
